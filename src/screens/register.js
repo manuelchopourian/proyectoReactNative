@@ -30,19 +30,19 @@ class Register extends Component {
 
                 {
                     this.state.email === '' ?
-                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password , this.state.userName)} style={styles.buttonDisabled}>
                     <Text style={styles.texto}>Registrarse</Text>
                     </TouchableOpacity>
                     : this.state.password === '' ?
-                    <TouchableOpacity disabled  onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <TouchableOpacity disabled  onPress={() => this.props.register(this.state.email, this.state.password , this.state.userName)} style={styles.buttonDisabled}>
                     <Text style={styles.texto}>Registrarse</Text>
                     </TouchableOpacity>
                     : this.state.userName === '' ? 
-                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password ,this.state.userName)} style={styles.buttonDisabled}>
                     <Text style={styles.texto}>Registrarse</Text>
                     </TouchableOpacity>
                     : 
-                    <TouchableOpacity onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.button}>
+                    <TouchableOpacity onPress={() => this.props.register(this.state.email, this.state.password , this.state.userName)} style={styles.button}>
                     <Text style={styles.texto}>Registrarse</Text>
                     </TouchableOpacity>
                 }

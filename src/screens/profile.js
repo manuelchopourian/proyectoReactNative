@@ -7,11 +7,14 @@ class Profile extends Component {
         this.state= {
 
         }
+        
     }
     render() {
+        {console.log(this.props.dataUsuario);}
         return (
             <View style={styles.container}>
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
+                <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
                 {/* FALTA USERNAME  */}
