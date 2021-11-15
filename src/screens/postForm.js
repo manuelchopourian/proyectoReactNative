@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Text, TextInput, TouchableOpacity,} from 'react-native';
 import {auth, db} from '../firebase/config';
+import MyCamera from '../components/MyCamera';
+
 
 class PostForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            textoPost:''
+            textoPost:'',
+            showCamera : true,
+            url : '',
         }
     }
+
     submitPost(){
         db.collection('posts').add({
             owner: auth.currentUser.email,
             texto: this.state.textoPost,
             createdAt: Date.now(),
             likes: [],
-            comments: []
+            comments: [],
+            photo : this.state.url
         })
         .then(
             this.setState({
@@ -26,20 +32,34 @@ class PostForm extends Component {
         )
         .catch( e => console.log(e))
     }
+
+    onImageUpload(url){
+        this.setState({
+            showCamera : false,
+            url : url,
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <TextInput 
-                    placeholder='Escribi Aqui' 
-                    onChangeText={text => this.setState({textoPost:text})} 
-                    style={styles.input}
-                    multiline
-                    value={this.state.textoPost}
-                    />
-                <TouchableOpacity onPress={() => this.submitPost()} style={styles.button}>
-                    <Text style={styles.texto}>Guardar posteo</Text>
-                </TouchableOpacity>
-                
+                {
+                    this.state.showCamera ?
+                    <MyCamera onImageUpload={ (url) => {this.onImageUpload(url)} }/>
+                    :
+                    <View>
+                        <TextInput 
+                        placeholder='Escribi Aqui' 
+                        onChangeText={text => this.setState({textoPost:text})} 
+                        style={styles.input}
+                        multiline
+                        value={this.state.textoPost}
+                        />
+                        <TouchableOpacity onPress={() => this.submitPost()} style={styles.button}>
+                        <Text style={styles.texto}>Guardar posteo</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
             </View>
         )
     }
@@ -49,6 +69,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
         marginTop: 20,
+        flex : 1,
     },
     input:{
         height: 100,

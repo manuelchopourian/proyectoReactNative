@@ -11,7 +11,7 @@ class Post extends Component {
             likes: 0,
             myLike: false,
             showModal: false,
-            comment:''
+            comment:'',
         }
     }
     componentDidMount(){
@@ -63,17 +63,21 @@ class Post extends Component {
         db.collection('posts').doc(this.props.postData.id).update({
             comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
-        .then(
+        .then(()=> {
             this.setState({
                 comment: '',
             })
-        )
+        })
     }
     render() {
         return (
             <View style={styles.container}>
+                {/* <Image 
+                    style = {styles.modalContainer }
+                    source = { {url : this.state.url } }
+                /> */}
                 <Text>{this.props.postData.data.texto}</Text>
-                <Text>Owner: {this.props.postData.data.owner}</Text>
+                <Text>Autor: {this.props.postData.data.owner}</Text>
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
@@ -96,12 +100,16 @@ class Post extends Component {
                     style={styles.modalContainer}>
                         <TouchableOpacity onPress={() => this.hideModal()}>
                             <Text  style={styles.closeButton}>X</Text>
-                        </TouchableOpacity> 
-                        <FlatList
-                        data={this.props.postData.data.comments} //el array
-                        keyExtractor={(comment)=> comment.createdAt.toString()}
-                        renderItem = {({item}) => <Text> {item.author}: {item.comment}</Text>}
-                        />
+                        </TouchableOpacity>
+                        {
+                            this.props.postData.data.comments.length === 0 ?
+                            <Text>Aún no hay comentarios. Sé el primero en opinar. </Text> :
+                            <FlatList
+                            data={this.props.postData.data.comments} //el array
+                            keyExtractor={(comment)=> comment.createdAt.toString()}
+                            renderItem = {({item}) => <Text> {item.author}: {item.comment}</Text>}
+                            />
+                        }
                         <TextInput 
                         placeholder='Comentar...' 
                         style={styles.input}
@@ -188,7 +196,7 @@ const styles = StyleSheet.create({
     },
     texto:{
         color: '#fff'
-    }
+    },
 })
 
 export default Post;

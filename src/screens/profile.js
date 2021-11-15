@@ -14,7 +14,7 @@ class Profile extends Component {
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                {/* <Text>{this.props.dataUsuario.userName} </Text> */}
+                {/* FALTA USERNAME  */}
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
