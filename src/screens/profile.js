@@ -15,6 +15,8 @@ class Profile extends Component {
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
                 {/* FALTA USERNAME  */}
+                {/* FALTAN POSTEOS CARGADOS POR EL USUARIO  */}
+                {/* FALTA CANTIDAD TOTAL DE POSTEOS */}
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
