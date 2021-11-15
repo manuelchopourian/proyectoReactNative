@@ -7,7 +7,8 @@ class Register extends Component {
         super(props);
         this.state = {
             email:'',
-            password: ''
+            password: '',
+            userName : ''
         }
     }
     render() {
@@ -20,15 +21,31 @@ class Register extends Component {
                 <TextInput 
                     keyboardType='default' 
                     placeholder='Nombre de usuario' 
-                    onChangeText={text => this.setState({username:text})} style={styles.input}/>
+                    onChangeText={text => this.setState({userName:text})} style={styles.input}/>
                 <TextInput 
                     placeholder='Contraseña' 
                     secureTextEntry={true}
                     onChangeText={text => this.setState({password:text})} style={styles.input}/>
                 <Text style={styles.alert}>{this.props.error}</Text>
-                <TouchableOpacity onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.button}>
+
+                {
+                    this.state.email === '' ?
+                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
                     <Text style={styles.texto}>Registrarse</Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                    : this.state.password === '' ?
+                    <TouchableOpacity disabled  onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <Text style={styles.texto}>Registrarse</Text>
+                    </TouchableOpacity>
+                    : this.state.userName === '' ? 
+                    <TouchableOpacity disabled onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <Text style={styles.texto}>Registrarse</Text>
+                    </TouchableOpacity>
+                    : 
+                    <TouchableOpacity onPress={() => this.props.register(this.state.email, this.state.password)} style={styles.button}>
+                    <Text style={styles.texto}>Registrarse</Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }
@@ -61,6 +78,15 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderStyle:'solid',
         borderColor:'#28a745',
+    },
+    buttonDisabled: {
+        backgroundColor: '#9c9c9c',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign:'center',
+        borderRadius:4,
+        borderStyle:'solid',
+        borderColor:'#9c9c9c',
     },
     texto:{
         color: '#fff'

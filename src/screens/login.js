@@ -26,9 +26,20 @@ class Login extends Component {
                     secureTextEntry={true}
                     onChangeText={text => this.setState({password:text})} style={styles.input}/>
                 <Text style={styles.alert}>{this.props.error}</Text>
-                <TouchableOpacity onPress={() => this.props.login(this.state.email, this.state.password)} style={styles.button}>
+                
+                {
+                    this.state.email === '' ?
+                    <TouchableOpacity disabled onPress={() => this.props.login(this.state.email, this.state.password)} style={styles.buttonDisabled}>
                     <Text style={styles.texto}>Iniciar sesión</Text>
-                </TouchableOpacity>
+                    </TouchableOpacity> 
+                    : this.state.password === '' ?
+                    <TouchableOpacity disabled onPress={() => this.props.login(this.state.email, this.state.password)} style={styles.buttonDisabled}>
+                    <Text style={styles.texto}>Iniciar sesión</Text>
+                    </TouchableOpacity> :
+                    <TouchableOpacity onPress={() => this.props.login(this.state.email, this.state.password)} style={styles.button}>
+                    <Text style={styles.texto}>Iniciar sesión</Text>
+                    </TouchableOpacity>
+                }
             </View>
         )
     }
@@ -56,6 +67,15 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderStyle:'solid',
         borderColor:'#28a745',
+    },
+    buttonDisabled: {
+        backgroundColor: '#9c9c9c',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign:'center',
+        borderRadius:4,
+        borderStyle:'solid',
+        borderColor:'#9c9c9c',
     },
     alert:{
         padding: 10,

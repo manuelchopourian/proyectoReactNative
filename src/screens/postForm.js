@@ -3,7 +3,6 @@ import {View, StyleSheet, Text, TextInput, TouchableOpacity,} from 'react-native
 import {auth, db} from '../firebase/config';
 import MyCamera from '../components/MyCamera';
 
-
 class PostForm extends Component {
     constructor(props){
         super(props);
