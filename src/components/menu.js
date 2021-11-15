@@ -25,7 +25,7 @@ class Menu extends Component {
             this.setState({
                 loggedIn: true,
                 dataUsuario: user,
-             })
+            })
             }  
         })
 }
@@ -71,17 +71,17 @@ class Menu extends Component {
     render() {
         return (
         this.state.loggedIn == false ?
-         <NavigationContainer>
+        <NavigationContainer>
             <Drawer.Navigator>
                 <Drawer.Screen name='Register' component={()=> <Register register={(email, pass) => this.register(email, pass)} error={(this.state.error)}/>}/>
                 <Drawer.Screen name='Login' component={()=> <Login login={(email, pass) => this.login(email, pass)} error={(this.state.error)}/>}/> 
             </Drawer.Navigator>
         </NavigationContainer>:
-         <NavigationContainer>
+        <NavigationContainer>
             <Drawer.Navigator>
                 <Drawer.Screen name='Home' component={()=> <Home />}/>
-                <Drawer.Screen name='Profile' component={()=> <Profile dataUsuario={(this.state.dataUsuario)} logout={() => this.logout()}/>}/>
-                <Drawer.Screen name='New Post' component={(drawerProps)=> <PostForm drawerProps={drawerProps}/>}/>
+                <Drawer.Screen name='Mi perfil' component={()=> <Profile dataUsuario={(this.state.dataUsuario)} logout={() => this.logout()}/>}/>
+                <Drawer.Screen name='Nuevo posteo' component={(drawerProps)=> <PostForm drawerProps={drawerProps}/>}/>
             </Drawer.Navigator>
         </NavigationContainer>
         );

@@ -28,8 +28,8 @@ class Post extends Component {
         })
         .then(
             this.setState({
-               likes: this.state.likes + 1,
-               myLike: true
+                likes: this.state.likes + 1,
+                myLike: true
             }),
         )
     }
@@ -39,8 +39,8 @@ class Post extends Component {
         })
         .then(
             this.setState({
-               likes: this.state.likes - 1,
-               myLike: false
+                likes: this.state.likes - 1,
+                myLike: false
             }),
         )
     }
@@ -60,8 +60,8 @@ class Post extends Component {
             author: auth.currentUser.email,
             comment: this.state.comment, 
         }
-         db.collection('posts').doc(this.props.postData.id).update({
-           comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
+        db.collection('posts').doc(this.props.postData.id).update({
+            comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
         .then(
             this.setState({
@@ -98,19 +98,26 @@ class Post extends Component {
                             <Text  style={styles.closeButton}>X</Text>
                         </TouchableOpacity> 
                         <FlatList
-                         data={this.props.postData.data.comments} //el array
+                        data={this.props.postData.data.comments} //el array
                         keyExtractor={(comment)=> comment.createdAt.toString()}
                         renderItem = {({item}) => <Text> {item.author}: {item.comment}</Text>}
-                         />
+                        />
                         <TextInput 
                         placeholder='Comentar...' 
                         style={styles.input}
                         multiline
                         onChangeText={text => this.setState({comment: text})}
                         />
-                        <TouchableOpacity onPress={() => this.saveComment()} style={styles.button}>
+                        {
+                            this.state.comment === '' ?
+                            <TouchableOpacity disabled onPress={() => this.saveComment()} style={styles.buttonDisabled}>
                             <Text style={styles.texto}>Guardar Comentario </Text>
-                        </TouchableOpacity> 
+                            </TouchableOpacity> 
+                            :
+                            <TouchableOpacity onPress={() => this.saveComment()} style={styles.button}>
+                            <Text style={styles.texto}>Guardar Comentario </Text>
+                            </TouchableOpacity> 
+                        }
                     </Modal>
                 </View>
                 :
@@ -161,6 +168,15 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderStyle:'solid',
         borderColor:'#28a745',
+    },
+    buttonDisabled: {
+        backgroundColor: '#9c9c9c',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign:'center',
+        borderRadius:4,
+        borderStyle:'solid',
+        borderColor:'#9c9c9c',
     },
     closeButton:{
         color: '#fff',

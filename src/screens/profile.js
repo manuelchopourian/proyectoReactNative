@@ -12,10 +12,11 @@ class Profile extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
-                <Text style={styles.text}> Last Sign In Time: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
-                <Text style={styles.text}> User Creation Time: {this.props.dataUsuario.metadata.creationTime} </Text>
+                <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
+                <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
+                {/* <Text>{this.props.dataUsuario.userName} </Text> */}
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
-                    <Text style={styles.texto}>Logout</Text>
+                    <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
             </View>
         )

@@ -22,12 +22,12 @@ class Login extends Component {
                     placeholder='Email' 
                     onChangeText={text => this.setState({email:text})} style={styles.input}/>
                 <TextInput 
-                    placeholder='Password' 
+                    placeholder='Contraseña' 
                     secureTextEntry={true}
                     onChangeText={text => this.setState({password:text})} style={styles.input}/>
                 <Text style={styles.alert}>{this.props.error}</Text>
                 <TouchableOpacity onPress={() => this.props.login(this.state.email, this.state.password)} style={styles.button}>
-                    <Text style={styles.texto}>Login</Text>
+                    <Text style={styles.texto}>Iniciar sesión</Text>
                 </TouchableOpacity>
             </View>
         )

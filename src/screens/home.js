@@ -14,7 +14,7 @@ class Home extends Component {
         }
     }
     componentDidMount(){
-       db.collection('posts').onSnapshot(
+        db.collection('posts').onSnapshot(
         docs => {
             let posts = []
             docs.forEach(doc => {
@@ -32,7 +32,7 @@ class Home extends Component {
     }
     render() {
         return (
-                 <View>
+                <View>
             {
                 this.state.isLoaded === false ?
                 <ActivityIndicator size='large' color='green'/> 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding:10,
     },
-   clickeado:{
+    clickeado:{
         backgroundColor:'#ccc',
         padding: 4,
         marginBottom: 10,
