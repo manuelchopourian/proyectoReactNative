@@ -3,6 +3,13 @@ import {View, StyleSheet, TouchableOpacity, Text, Modal, TextInput, FlatList, Im
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 
+// CODIGO PARA BORRAR POSTS
+// db.collection("cities").doc("DC").delete().then(() => {
+//     console.log("Document successfully deleted!");
+// }).catch((error) => {
+//     console.error("Error removing document: ", error);
+// });
+
 
 class Post extends Component {
     constructor(props){
