@@ -86,6 +86,7 @@ class Menu extends Component {
                 <Drawer.Screen name='Home' component={()=> <Home />}/>
                 <Drawer.Screen name='Mi perfil' component={()=> <Profile dataUsuario={(this.state.dataUsuario)} logout={() => this.logout()}/>}/>
                 <Drawer.Screen name='Nuevo posteo' component={(drawerProps)=> <PostForm drawerProps={drawerProps}/>}/>
+                {/* <Drawer.Screen name='Buscador' component={() => <Buscador />} /> */}
             </Drawer.Navigator>
         </NavigationContainer>
         );

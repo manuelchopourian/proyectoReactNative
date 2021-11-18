@@ -74,7 +74,7 @@ class Post extends Component {
             
             <View style={styles.container}>
                 {console.log(this.props.postData)}
-                 {<Image 
+                {<Image 
                     style = {styles.modalContainer }
                     source = { {uri : this.props.postData.data.photo } }
                 />}
@@ -91,6 +91,7 @@ class Post extends Component {
                 </TouchableOpacity>
                 }
                 <Text>Likes: {this.state.likes}</Text>
+                <Text>Comentarios: {this.props.postData.data.comments.length} </Text>
 
                 {
                 this.state.showModal === true ?

@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList } from 'react-native';
 import {db} from '../firebase/config'
 
 import Post from '../components/post';
+import Buscador from '../components/buscador';
 
 class Home extends Component {
     constructor(props){

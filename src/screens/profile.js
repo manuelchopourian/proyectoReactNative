@@ -1,28 +1,55 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, FlatList, ActivityIndicator} from 'react-native';
+import {db} from '../firebase/config'
+
+import Post from '../components/post';
 
 class Profile extends Component {
     constructor(props){
         super(props);
         this.state= {
-
+            isLoaded: false,
+            posteos : []
         }
-        
     }
+
+    componentDidMount(){
+        db.collection('posts').where('owner' , '==', `${this.props.dataUsuario.email}` ).onSnapshot(
+        docs => {
+            let posts = []
+            docs.forEach(doc => {
+                posts.push({
+                    id: doc.id,
+                    data: doc.data()
+                })
+            this.setState({
+                posteos: posts,
+                isLoaded: true
+            })
+            })
+        })
+    }
+
     render() {
         {console.log(this.props.dataUsuario);}
         return (
             <View style={styles.container}>
+                {
+                this.state.isLoaded === false ?
+                <ActivityIndicator size='large' color='green'/>
+                :
+                <View style={styles.container}>
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
                 <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                {/* FALTA USERNAME  */}
-                {/* FALTAN POSTEOS CARGADOS POR EL USUARIO  */}
-                {/* FALTA CANTIDAD TOTAL DE POSTEOS */}
+                <Text style={styles.text}> Cantidad de posteos: </Text>
+                <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} />
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
+                </View>
+                }
             </View>
         )
     }
