@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, TouchableOpacity, Text, Modal, TextInput, FlatList} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, Modal, TextInput, FlatList, Image} from 'react-native';
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 
@@ -71,11 +71,13 @@ class Post extends Component {
     }
     render() {
         return (
+            
             <View style={styles.container}>
-                {/* <Image 
+                {console.log(this.props.postData)}
+                 {<Image 
                     style = {styles.modalContainer }
-                    source = { {url : this.state.url } }
-                /> */}
+                    source = { {uri : this.props.postData.data.photo } }
+                />}
                 <Text>{this.props.postData.data.texto}</Text>
                 <Text>Autor: {this.props.postData.data.owner}</Text>
                 {
