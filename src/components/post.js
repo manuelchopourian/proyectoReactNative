@@ -94,12 +94,12 @@ db.collection('posts').doc(this.props.postData.id).delete()
             
             <View style={styles.container}>
                 {console.log(this.props.postData)}
+                <Text style={styles.autor}> {this.props.postData.data.owner}</Text>
                 {<Image 
                     style={{width: '100%', height: 250, borderRadius: '10px',}}
                     source = { {uri : this.props.postData.data.photo } }
                 />}
                 <Text>{this.props.postData.data.texto}</Text>
-                <Text>Autor: {this.props.postData.data.owner}</Text>
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
@@ -240,6 +240,12 @@ const styles = StyleSheet.create({
     },
     texto:{
         color: '#fff'
+    },
+    autor:{
+        paddingBottom: 5,
+        paddingLeft: 20,
+        fontSize: 16,
+
     },
 })
 

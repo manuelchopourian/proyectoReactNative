@@ -76,12 +76,12 @@ class MyCamera extends Component{
                                 style = {styles.cameraBody}
                                 source = { {uri : this.state.photo } }
                             />
-                            <View>
-                                <TouchableOpacity onPress={ () => this.savePhoto() }>
-                                    <Text>ACEPTAR</Text>
+                            <View style = {styles.buttonsContainer}>
+                                <TouchableOpacity onPress={ () => this.clear()} style={styles.buttonDecline}>
+                                    <Text style={styles.texto}>RECHAZAR</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={ () => this.clear()}>
-                                    <Text>RECHAZAR</Text>
+                                <TouchableOpacity onPress={ () => this.savePhoto() } style={styles.buttonAccept}>
+                                    <Text style={styles.texto}>ACEPTAR</Text>
                                 </TouchableOpacity>
                             </View>
                         </React.Fragment>
@@ -94,12 +94,12 @@ class MyCamera extends Component{
                                 ref = { reference => this.camera = reference } // Indica a que cámara refiere el componente. 
                             />
                             <TouchableOpacity onPress={ () => this.takePicture() } style={styles.button}>
-                                <Text>Sacar foto</Text>
+                                <Text style={styles.texto}>Sacar foto</Text>
                             </TouchableOpacity>
                         </View>
                 :
                     // Renderizo mensaje
-                    <Text>No tienes permisos para usar la cámara.</Text>
+                    <Text style = {styles.error}>No tienes permisos para usar la cámara.</Text>
             }
             </View>
         )
@@ -111,11 +111,45 @@ const styles = StyleSheet.create({
         flex : 1,
     },
     cameraBody : {
-        flex : 7,
+        flex: 7,
     },
-    button : {
-        flex : 1,
-        justifyContent : 'center'
+    button:{
+        backgroundColor: '#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign:'center',
+        borderRadius:4,
+        borderStyle:'solid',
+        borderColor:'#28a745',
+        marginVertical: 5,
+    },
+    buttonsContainer:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+    },
+    buttonAccept:{
+        backgroundColor: '#28a745',
+        borderRadius:4,
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        
+    },
+    buttonDecline:{
+        backgroundColor: '#CB4335',
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+    },
+    texto:{
+        color: 'white',
+    },
+    error:{
+        color:  '#CB4335',
+        textAlign: 'center',
+        fontSize: 16,
     }
 })
 

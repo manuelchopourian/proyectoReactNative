@@ -53,11 +53,10 @@ class Register extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        paddingHorizontal: 10,
-        marginTop: 100,
-        margin: 450,
-        borderWidth: 3,
-        padding: 30,
+        marginTop: 10,
+        marginHorizontal: 5,
+        borderWidth: 1,
+        padding: 3,
         borderRadius: 10,
         backgroundColor: "#E6E1E1"
         
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
         height: 20,
         paddingVertical: 15,
         paddingHorizontal: 10,
-        borderWidth: 1,
         borderColor:'#ccc',
         borderStyle:'solid',
         borderRadius:6,

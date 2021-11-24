@@ -19,7 +19,8 @@ class buscador extends Component{
         if(texto === '' || texto ===null){
             this.setState({
                 posteos:[],
-                buscado: false
+                buscado: false,
+                alerta: 'El usuario no existe o aún no tiene publicaciones'
 
             })
         }
@@ -52,7 +53,9 @@ class buscador extends Component{
                     placeholder='Busca un Usuario' 
                     onChangeText={(texto) => this.buscador(texto)} style={styles.input}/>
             
-            {this.state.posteos.length == 0  && this.state.buscado?  'El usuario no existe o aún no tiene publicaciones':
+            {this.state.posteos.length == 0  ?
+            <Text style = {styles.error}>{this.state.alerta}</Text>
+            :
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={posteo => posteo.id}
@@ -89,6 +92,11 @@ const styles = StyleSheet.create({
         borderStyle:'solid',
         borderColor:'#28a745',
     },
+    error:{
+        color:  '#CB4335',
+        textAlign: 'center',
+        fontSize: 16,
+    }
 })
 
 export default buscador;

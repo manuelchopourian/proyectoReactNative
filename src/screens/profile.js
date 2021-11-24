@@ -36,7 +36,7 @@ class Profile extends Component {
 
                 <View style={styles.container}>
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
-                <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
+                <Text style={styles.text}> {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
                 <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
