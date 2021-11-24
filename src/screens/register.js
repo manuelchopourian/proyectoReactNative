@@ -51,16 +51,16 @@ const styles = StyleSheet.create({
         padding: 3,
         borderRadius: 10,
         backgroundColor: "#E6E1E1"
-        
     },
     input:{
         height: 20,
         paddingVertical: 15,
         paddingHorizontal: 10,
-        borderColor:'#ccc',
-        borderStyle:'solid',
-        borderRadius:6,
-        marginVertical:10
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical: 10,
+        borderWidth : 1,
     },
     alert:{
         padding: 10,
@@ -68,21 +68,21 @@ const styles = StyleSheet.create({
     },
     button:{
         backgroundColor: '#28a745',
-        paddingHorizontal: 10,
+        paddingHorizontal: 6,
         paddingVertical: 6,
         textAlign:'center',
-        borderRadius:4,
-        borderStyle:'solid',
-        borderColor:'#28a745',
+        borderRadius: 4,
+        borderStyle: 'solid',
+        borderColor: '#28a745',
     },
     buttonDisabled: {
         backgroundColor: '#9c9c9c',
         paddingHorizontal: 10,
         paddingVertical: 6,
-        textAlign:'center',
-        borderRadius:4,
-        borderStyle:'solid',
-        borderColor:'#9c9c9c',
+        textAlign: 'center',
+        borderRadius: 4,
+        borderStyle: 'solid',
+        borderColor: '#9c9c9c',
     },
     texto:{
         color: '#fff',

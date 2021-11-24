@@ -3,14 +3,6 @@ import {View, StyleSheet, TouchableOpacity, Text, Modal, TextInput, FlatList, Im
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 
-// CODIGO PARA BORRAR POSTS
-// db.collection("cities").doc("DC").delete().then(() => {
-//     console.log("Document successfully deleted!");
-// }).catch((error) => {
-//     console.error("Error removing document: ", error);
-// });
-
-
 class Post extends Component {
     constructor(props){
         super(props);
@@ -78,16 +70,13 @@ class Post extends Component {
     }
 
     borrarposteo(){
-
-        // CODIGO PARA BORRAR POSTS
-db.collection('posts').doc(this.props.postData.id).delete()
-.then(() => {
-     console.log("Document successfully deleted!");
- }).catch((error) => {
-     console.error("Error removing document: ", error);
- });
+        db.collection('posts').doc(this.props.postData.id).delete()
+        .then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
     }
-
 
     render() {
         return (
@@ -136,7 +125,6 @@ db.collection('posts').doc(this.props.postData.id).delete()
                         <TextInput 
                         placeholder='Comentar...' 
                         style={styles.input}
-                        multiline
                         onChangeText={text => this.setState({comment: text})}
                         />
                         {
@@ -160,27 +148,15 @@ db.collection('posts').doc(this.props.postData.id).delete()
                     </View>
                 }
 
-
-                
-                
-               {this.props.postData.data.owner == auth.currentUser.displayName ? 
-
+                { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
                         <TouchableOpacity onPress={() => this.borrarposteo()}>
                         <Text>Borrar posteo</Text>
                         </TouchableOpacity> 
-                        <Text></Text>
                     </View>
                     :
                     <Text></Text>
-                  }
-                  
-                    
-
-                    
-                    
-                
-
+                }
             </View> 
         );
     }
@@ -206,11 +182,11 @@ const styles = StyleSheet.create({
         height: 40,
         paddingVertical: 15,
         paddingHorizontal: 10,
-        border: 1,
-        borderColor:'#ccc',
-        borderStyle:'solid',
-        borderRadius:6,
-        marginVertical:10
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical: 10,
+        borderWidth : 1,
     },
     button:{
         backgroundColor: '#28a745',
