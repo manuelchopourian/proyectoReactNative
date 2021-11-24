@@ -24,27 +24,23 @@ class buscador extends Component{
             })
         }
         else{
-        db.collection('posts').orderBy('owner').startAt(texto.toLowerCase()).endAt(texto + '\uf8ff').onSnapshot(
-        docs => {
-            let posts = []
-            docs.forEach(doc => {
-                posts.push({
-                    id: doc.id,
-                    data: doc.data(),
+            db.collection('posts').orderBy('owner').startAt(texto.toLowerCase()).endAt(texto + '\uf8ff').onSnapshot(
+            docs => {
+                let posts = []
+                docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    })
+                    this.setState({
+                        posteos: posts,
+                        buscado: true,
+                        alert: ''
+                    })
                 })
-            this.setState({
-                posteos: posts,
-                buscado: true,
-                alerta: ''
-
             })
-            })
-        })
-
-
-         }
         }
-    
+    }
 
     render(){
         return (
@@ -53,15 +49,15 @@ class buscador extends Component{
                     keyboardType='default' 
                     placeholder='Busca un Usuario' 
                     onChangeText={(texto) => this.buscador(texto)} style={styles.input}/>
-                    
-            <Text style = {styles.error}>{this.state.alerta}</Text>
-            <FlatList
-                data={this.state.posteos}
-                keyExtractor={posteo => posteo.id}
-                renderItem={({item}) => <Post  postData={item} />} />
-            
-            
-
+            {this.state.posteos.length == 0  ?
+                <Text style = {styles.error}>{this.state.alerta}</Text>
+                :
+                <FlatList
+                    data={this.state.posteos}
+                    keyExtractor={posteo => posteo.id}
+                    renderItem={({item}) => <Post postData={item} />} 
+                />
+            }
             </View>
         )
     }
@@ -72,11 +68,11 @@ const styles = StyleSheet.create({
         height: 20,
         paddingVertical: 15,
         paddingHorizontal: 10,
-        border: 1,
-        borderColor:'#ccc',
-        borderStyle:'solid',
-        borderRadius:6,
-        marginVertical:10
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical: 10,
+        borderWidth : 1,
     },
     container:{
         paddingHorizontal: 10,

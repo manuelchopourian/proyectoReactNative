@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, TouchableOpacity, Text, FlatList, ActivityIndicator} from 'react-native';
 import {db} from '../firebase/config'
-
 import Post from '../components/post';
 
 class Profile extends Component {
     constructor(props){
         super(props);
         this.state= {
-            
             posteos : []
         }
     }
@@ -24,7 +22,6 @@ class Profile extends Component {
                 })
             this.setState({
                 posteos: posts,
-
             })
             })
         })
@@ -33,7 +30,6 @@ class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <View style={styles.container}>
                 <Text style={styles.saludo}>Hola {this.props.dataUsuario.displayName}</Text>
                 <View style = {styles.informacion}>
@@ -65,7 +61,6 @@ class Profile extends Component {
                     <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
                 </View>
-
             </View>
         )
     }
