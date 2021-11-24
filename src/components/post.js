@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import {View, StyleSheet, TouchableOpacity, Text, Modal, TextInput, FlatList, Image} from 'react-native';
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
+import{FontAwesome} from '@expo/vector-icons'
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 class Post extends Component {
     constructor(props){
         super(props);
@@ -56,7 +62,7 @@ class Post extends Component {
     saveComment(){
         let oneComment = {
             createdAt: Date.now(),
-            author: auth.currentUser.email,
+            author: auth.currentUser.displayName,
             comment: this.state.comment, 
         }
         db.collection('posts').doc(this.props.postData.id).update({
@@ -93,10 +99,11 @@ class Post extends Component {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
                     <Text>Me Gusta</Text>
+                     <FontAwesome name= "heart-o" size={24} color="black" />
                 </TouchableOpacity> 
                 :
                 <TouchableOpacity onPress={() => this.quitarLike()}>
-                    <Text>Quitar Like</Text>
+                    <FontAwesome name= "heart" size={24} color="red" />
                 </TouchableOpacity>
                 }
                 <Text>Likes: {this.state.likes}</Text>
@@ -151,7 +158,7 @@ class Post extends Component {
                 { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
                         <TouchableOpacity onPress={() => this.borrarposteo()}>
-                        <Text>Borrar posteo</Text>
+                        <FontAwesome name='trash' size={24} />
                         </TouchableOpacity> 
                     </View>
                     :
