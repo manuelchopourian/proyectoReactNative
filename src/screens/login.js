@@ -44,7 +44,13 @@ class Login extends Component {
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
-        marginTop: 20,
+        marginTop: 100,
+        margin: 450,
+        borderWidth: 3,
+        padding: 30,
+        borderRadius: 10,
+        backgroundColor: "#E6E1E1"
+        
     },
     input:{
         height: 20,

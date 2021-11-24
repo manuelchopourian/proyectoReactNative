@@ -8,7 +8,7 @@ class Profile extends Component {
     constructor(props){
         super(props);
         this.state= {
-            isLoaded: false,
+            
             posteos : []
         }
     }
@@ -24,7 +24,7 @@ class Profile extends Component {
                 })
             this.setState({
                 posteos: posts,
-                isLoaded: true
+
             })
             })
         })
@@ -33,22 +33,28 @@ class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {
-                this.state.isLoaded === false ?
-                <ActivityIndicator size='large' color='green'/>
-                :
+
                 <View style={styles.container}>
                 <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
                 <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
                 <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
-                <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} />
+
+                  
+                {this.state.posteos.length === 0 ? <Text>Este Usuario no tine publicaciones aun</Text> :  <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} /> }
+                
+              
+               
+               
+               
+               
+               
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>
                 </TouchableOpacity>
                 </View>
-                }
+
             </View>
         )
     }

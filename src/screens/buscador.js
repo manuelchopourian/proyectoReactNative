@@ -10,13 +10,21 @@ class buscador extends Component{
         super(props);
         this.state={
             busqueda : '',
-            posteos: {},
-            isLoaded: false
+            posteos: [],
+            buscado: false,
         }
     }
 
-    onSubmit(){
-        db.collection('posts').where('owner' , '==', this.state.busqueda).onSnapshot(
+    buscador(texto){
+        if(texto === '' || texto ===null){
+            this.setState({
+                posteos:[],
+                buscado: false
+
+            })
+        }
+        else{
+        db.collection('posts').orderBy('owner').startAt(texto.toLowerCase()).endAt(texto + '\uf8ff').onSnapshot(
         docs => {
             let posts = []
             docs.forEach(doc => {
@@ -26,10 +34,13 @@ class buscador extends Component{
                 })
             this.setState({
                 posteos: posts,
-                isLoaded: true,
+                buscado: true,
             })
             })
         })
+
+
+         }
         }
     
 
@@ -39,20 +50,15 @@ class buscador extends Component{
                 <TextInput 
                     keyboardType='default' 
                     placeholder='Busca un Usuario' 
-                    onChangeText={text => this.setState({busqueda:text})} style={styles.input}/>
-
-                <TouchableOpacity  style={styles.button} onPress={()=> this.onSubmit()}>
-                    <Text>Buscar</Text>
-                </TouchableOpacity>
+                    onChangeText={(texto) => this.buscador(texto)} style={styles.input}/>
             
-            {this.state.posteos.length !== 0 
-            ?
+            {this.state.posteos.length == 0  && this.state.buscado?  'El usuario no existe o aún no tiene publicaciones':
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={posteo => posteo.id}
                 renderItem={({item}) => <Post  postData={item} />} />
-            :
-            <Text>El usuario no existe o aún no tiene publicaciones</Text>
+            
+            
             }
             </View>
         )

@@ -161,9 +161,9 @@ db.collection('posts').doc(this.props.postData.id).delete()
                 }
 
 
-                { 
                 
-                this.props.postData.data.owner == auth.currentUser.email ?
+                
+               {this.props.postData.data.owner == auth.currentUser.displayName ? 
 
                 <View>
                         <TouchableOpacity onPress={() => this.borrarposteo()}>
@@ -173,7 +173,8 @@ db.collection('posts').doc(this.props.postData.id).delete()
                     </View>
                     :
                     <Text></Text>
-                    }
+                  }
+                  
                     
 
                     
