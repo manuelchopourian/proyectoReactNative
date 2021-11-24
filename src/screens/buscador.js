@@ -16,12 +16,11 @@ class buscador extends Component{
     }
 
     buscador(texto){
-        if(texto === '' || texto ===null){
+        if(texto === '' || texto === null){
             this.setState({
                 posteos:[],
                 buscado: false,
                 alerta: 'El usuario no existe o aún no tiene publicaciones'
-
             })
         }
         else{
@@ -36,6 +35,8 @@ class buscador extends Component{
             this.setState({
                 posteos: posts,
                 buscado: true,
+                alerta: ''
+
             })
             })
         })
@@ -52,17 +53,15 @@ class buscador extends Component{
                     keyboardType='default' 
                     placeholder='Busca un Usuario' 
                     onChangeText={(texto) => this.buscador(texto)} style={styles.input}/>
-            
-            {this.state.posteos.length == 0  ?
+                    
             <Text style = {styles.error}>{this.state.alerta}</Text>
-            :
             <FlatList
                 data={this.state.posteos}
                 keyExtractor={posteo => posteo.id}
                 renderItem={({item}) => <Post  postData={item} />} />
             
             
-            }
+
             </View>
         )
     }

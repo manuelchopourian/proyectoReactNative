@@ -35,19 +35,30 @@ class Profile extends Component {
             <View style={styles.container}>
 
                 <View style={styles.container}>
-                <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
-                <Text style={styles.text}> {this.props.dataUsuario.displayName}</Text>
-                <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
-                <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
+                <Text style={styles.saludo}>Hola {this.props.dataUsuario.displayName}</Text>
+                <View style = {styles.informacion}>
+                <Text style={styles.text}>Email: </Text> 
+                <Text style = {styles.data}>{this.props.dataUsuario.email}</Text> 
+                </View>
+                <View style = {styles.informacion}>
+                <Text style={styles.text}>Ultimo inicio de sesión: </Text>
+                <Text style={styles.data}>{this.props.dataUsuario.metadata.lastSignInTime} </Text>
+                </View>
+                <View style = {styles.informacion}>
+                <Text style={styles.text}>Fecha de creación del usuario: </Text>
+                <Text style={styles.data}>{this.props.dataUsuario.metadata.creationTime} </Text>
+                </View>
+                <View style = {styles.informacion}>
+                <Text style={styles.text}>Cantidad de posteos: </Text>
+                <Text style={styles.data}>{this.state.posteos.length} </Text>
+                </View>
 
-                  
-                {this.state.posteos.length === 0 ? <Text>Este Usuario no tine publicaciones aun</Text> :  <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} /> }
+        
+                {this.state.posteos.length === 0 ? <Text style={styles.text}>Este Usuario no tiene publicaciones aún</Text> 
+                :  
+                <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} /> }
                 
               
-               
-               
-               
                
                
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
@@ -62,18 +73,23 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        paddingHorizontal: 10,
-        marginTop: 20,
+        paddingHorizontal: 5,
+        marginTop: 10,
+    },
+    informacion:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        flexWrap: 'nowrap',
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+        marginVertical:5,
     },
     text:{
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        border: 1,
-        borderColor:'#ccc',
-        borderStyle:'solid',
-        borderRadius:6,
-        marginVertical:10
+        fontFamily: 'HelveticaNeue-Bold',
+    },
+    data:{
+        fontFamily: 'HelveticaNeue',
     },
     button:{
         backgroundColor: '#CB4335',
@@ -83,10 +99,16 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderStyle:'solid',
         borderColor:'#28a745',
-        marginTop: 20,
+        marginVertical: 20,
 
     },
+    saludo:{
+        fontFamily: 'HelveticaNeue-Bold',
+        fontSize: 20,
+        paddingHorizontal: 5,
+    },
     texto:{
+        fontFamily: 'HelveticaNeue',
         color: '#fff'
     }
 })

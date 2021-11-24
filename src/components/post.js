@@ -64,7 +64,7 @@ class Post extends Component {
     saveComment(){
         let oneComment = {
             createdAt: Date.now(),
-            author: auth.currentUser.email,
+            author: auth.currentUser.displayName,
             comment: this.state.comment, 
         }
         db.collection('posts').doc(this.props.postData.id).update({
@@ -99,20 +99,25 @@ db.collection('posts').doc(this.props.postData.id).delete()
                     style={{width: '100%', height: 250, borderRadius: '10px',}}
                     source = { {uri : this.props.postData.data.photo } }
                 />}
-                <Text>{this.props.postData.data.texto}</Text>
+                <View style = {styles.informacion}>
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
-                    <Text>Me Gusta</Text>
+                    <Text style={styles.like}>Me Gusta</Text>
                 </TouchableOpacity> 
                 :
                 <TouchableOpacity onPress={() => this.quitarLike()}>
-                    <Text>Quitar Like</Text>
+                    <Text style={styles.like}>Quitar Like</Text>
                 </TouchableOpacity>
                 }
-                <Text>Likes: {this.state.likes}</Text>
-                <Text>Comentarios: {this.props.postData.data.comments.length} </Text>
+                <Text style={styles.like}>Likes: {this.state.likes}</Text>
+                </View>
 
+                <Text style={styles.data}>{this.props.postData.data.texto}</Text>
+
+                
+                <Text style={styles.data}>Comentarios: {this.props.postData.data.comments.length} </Text>
+                
                 {
                 this.state.showModal === true ?
                 <View>
@@ -154,7 +159,7 @@ db.collection('posts').doc(this.props.postData.id).delete()
                 :
                     <View>
                         <TouchableOpacity onPress={() => this.showModal()}>
-                        <Text>Mostrar Comentarios</Text>
+                        <Text style={styles.data}>Mostrar Comentarios</Text>
                         </TouchableOpacity> 
                         <Text></Text>
                     </View>
@@ -167,7 +172,7 @@ db.collection('posts').doc(this.props.postData.id).delete()
 
                 <View>
                         <TouchableOpacity onPress={() => this.borrarposteo()}>
-                        <Text>Borrar posteo</Text>
+                        <Text style = {styles.delete}>Borrar posteo</Text>
                         </TouchableOpacity> 
                         <Text></Text>
                     </View>
@@ -243,10 +248,32 @@ const styles = StyleSheet.create({
     },
     autor:{
         paddingBottom: 5,
-        paddingLeft: 20,
-        fontSize: 16,
-
+        paddingLeft: 15,
+        fontSize: 18,
+        fontFamily: 'HelveticaNeue-Bold',
+        paddingVertical: 10,
     },
+    informacion:{
+        display:'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        paddingVertical: 5,
+    },
+    like:{
+        fontFamily: 'HelveticaNeue-Bold',
+        paddingHorizontal: 5,
+        marginBottom: 5,
+        fontSize: 13
+    },
+    data:{
+        fontFamily: 'HelveticaNeue',
+        paddingHorizontal: 5,
+        marginBottom: 5,
+    },
+    delete:{
+        textAlign: 'right',
+        marginBottom: 5,
+    }
 })
 
 export default Post;

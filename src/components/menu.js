@@ -94,6 +94,10 @@ class Menu extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor:'black',
+    }
+})
 
 export default Menu;
