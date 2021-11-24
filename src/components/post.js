@@ -76,6 +76,19 @@ class Post extends Component {
             })
         })
     }
+
+    borrarposteo(){
+
+        // CODIGO PARA BORRAR POSTS
+db.collection('posts').doc(this.props.postData.id).delete()
+.then(() => {
+     console.log("Document successfully deleted!");
+ }).catch((error) => {
+     console.error("Error removing document: ", error);
+ });
+    }
+
+
     render() {
         return (
             
@@ -147,7 +160,27 @@ class Post extends Component {
                     </View>
                 }
 
-            </View>
+
+                { 
+                
+                this.props.postData.data.owner == auth.currentUser.email ?
+
+                <View>
+                        <TouchableOpacity onPress={() => this.borrarposteo()}>
+                        <Text>Borrar posteo</Text>
+                        </TouchableOpacity> 
+                        <Text></Text>
+                    </View>
+                    :
+                    <Text></Text>
+                    }
+                    
+
+                    
+                    
+                
+
+            </View> 
         );
     }
 }

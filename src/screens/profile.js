@@ -42,7 +42,7 @@ class Profile extends Component {
                 <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length}</Text>
+                <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
                 <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} />
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>
