@@ -13,7 +13,7 @@ class buscador extends Component{
     }
 
     componentDidMount(){
-        db.collection('posts').where(('owner' , '==', `${this.state.busqueda}`).onSnapshot(
+        /*db.collection('posts').where(('owner' , '==', `${this.state.busqueda}`).onSnapshot(
         docs => {
             let posts = []
             docs.forEach(doc => {
@@ -26,7 +26,7 @@ class buscador extends Component{
                 isLoaded: true,
             })
             })
-        })
+        }*/
     }
 
     render(){
