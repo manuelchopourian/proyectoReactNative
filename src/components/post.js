@@ -12,6 +12,7 @@ class Post extends Component {
             myLike: false,
             showModal: false,
             comment:'',
+            alerta: false,
         }
     }
     componentDidMount(){
@@ -79,6 +80,19 @@ class Post extends Component {
         });
     }
 
+    mostraralerta(){
+        this.setState({
+            alerta: true,
+        })
+    }
+
+    sacaralerta(){
+        this.setState({
+            alerta: false,
+        })
+    }
+
+
     render() {
         return (
             
@@ -93,8 +107,7 @@ class Post extends Component {
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
-                    <Text style={styles.like}>Me Gusta</Text>
-                    <FontAwesome name= "heart-o" size={24} color="black" />
+                    <FontAwesome name= "heart-o" size={24} color="black"  style={styles.like}/>
                 </TouchableOpacity> 
                 :
                 <TouchableOpacity onPress={() => this.quitarLike()}>
@@ -157,12 +170,31 @@ class Post extends Component {
 
                 { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
+<<<<<<< HEAD
                         <TouchableOpacity onPress={() => this.borrarposteo()}>
                         <FontAwesome name='trash' size={24} style = {styles.delete}/>
+=======
+                        <TouchableOpacity onPress={() => this.mostraralerta()}>
+                        <FontAwesome name='trash' size={24} />
+>>>>>>> 27317290aaa3b4b585415dbfd9c82c2d0f0c83b0
                         </TouchableOpacity> 
+                        { this.state.alerta ? (
+                        <Modal
+                        visible={this.state.alerta}
+                        animationType="slide"
+                        transparent="false">
+                            <Text>¿Estas seguro que quieres eliminar tu posteo?</Text>
+                        <TouchableOpacity onPress={() => this.borrarposteo() }>
+                            <Text>Aceptar</Text>
+                            </TouchableOpacity>
+                             <TouchableOpacity onPress={() => this.sacaralerta()}>
+                                  <Text>Cancelar</Text> </TouchableOpacity>
+                                  </Modal>)
+                                  :null
+                                  }
                     </View>
                     :
-                    <Text></Text>
+                    <></>
                 }
             </View> 
         );
