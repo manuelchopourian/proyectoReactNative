@@ -170,13 +170,8 @@ class Post extends Component {
 
                 { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
-<<<<<<< HEAD
-                        <TouchableOpacity onPress={() => this.borrarposteo()}>
-                        <FontAwesome name='trash' size={24} style = {styles.delete}/>
-=======
                         <TouchableOpacity onPress={() => this.mostraralerta()}>
                         <FontAwesome name='trash' size={24} />
->>>>>>> 27317290aaa3b4b585415dbfd9c82c2d0f0c83b0
                         </TouchableOpacity> 
                         { this.state.alerta ? (
                         <Modal
