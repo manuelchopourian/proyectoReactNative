@@ -21,29 +21,25 @@ class buscador extends Component{
                 posteos:[],
                 buscado: false,
                 alerta: 'El usuario no existe o aún no tiene publicaciones'
-
             })
         }
         else{
-        db.collection('posts').orderBy('owner').startAt(texto.toLowerCase()).endAt(texto + '\uf8ff').onSnapshot(
-        docs => {
-            let posts = []
-            docs.forEach(doc => {
-                posts.push({
-                    id: doc.id,
-                    data: doc.data(),
+            db.collection('posts').orderBy('owner').startAt(texto.toLowerCase()).endAt(texto + '\uf8ff').onSnapshot(
+            docs => {
+                let posts = []
+                docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    })
+                    this.setState({
+                        posteos: posts,
+                        buscado: true,
+                    })
                 })
-            this.setState({
-                posteos: posts,
-                buscado: true,
             })
-            })
-        })
-
-
-         }
         }
-    
+    }
 
     render(){
         return (
@@ -52,16 +48,14 @@ class buscador extends Component{
                     keyboardType='default' 
                     placeholder='Busca un Usuario' 
                     onChangeText={(texto) => this.buscador(texto)} style={styles.input}/>
-            
             {this.state.posteos.length == 0  ?
-            <Text style = {styles.error}>{this.state.alerta}</Text>
-            :
-            <FlatList
-                data={this.state.posteos}
-                keyExtractor={posteo => posteo.id}
-                renderItem={({item}) => <Post  postData={item} />} />
-            
-            
+                <Text style = {styles.error}>{this.state.alerta}</Text>
+                :
+                <FlatList
+                    data={this.state.posteos}
+                    keyExtractor={posteo => posteo.id}
+                    renderItem={({item}) => <Post postData={item} />} 
+                />
             }
             </View>
         )

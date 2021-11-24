@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, TouchableOpacity, Text, FlatList, ActivityIndicator} from 'react-native';
 import {db} from '../firebase/config'
-
 import Post from '../components/post';
 
 class Profile extends Component {
     constructor(props){
         super(props);
         this.state= {
-            
             posteos : []
         }
     }
@@ -24,7 +22,6 @@ class Profile extends Component {
                 })
             this.setState({
                 posteos: posts,
-
             })
             })
         })
@@ -33,28 +30,17 @@ class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <View style={styles.container}>
-                <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
-                <Text style={styles.text}> {this.props.dataUsuario.displayName}</Text>
-                <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
-                <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
-
-                  
-                {this.state.posteos.length === 0 ? <Text>Este Usuario no tine publicaciones aun</Text> :  <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} /> }
-                
-              
-               
-               
-               
-               
-               
-                <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
-                    <Text style={styles.texto}>Cerrar sesión</Text>
-                </TouchableOpacity>
+                    <Text style={styles.text}>{this.props.dataUsuario.displayName}</Text>
+                    <Text style={styles.text}> Email: {this.props.dataUsuario.email}</Text>
+                    <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
+                    <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
+                    <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length} </Text>
+                    {this.state.posteos.length === 0 ? <Text>Todavia no tenes publicaciones!</Text> :  <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} /> }
+                    <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
+                        <Text style={styles.texto}>Cerrar sesión</Text>
+                    </TouchableOpacity>
                 </View>
-
             </View>
         )
     }
@@ -84,7 +70,6 @@ const styles = StyleSheet.create({
         borderStyle:'solid',
         borderColor:'#28a745',
         marginTop: 20,
-
     },
     texto:{
         color: '#fff'
