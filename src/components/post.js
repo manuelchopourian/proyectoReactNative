@@ -12,6 +12,7 @@ class Post extends Component {
             myLike: false,
             showModal: false,
             comment:'',
+            alerta: false,
         }
     }
     componentDidMount(){
@@ -79,6 +80,19 @@ class Post extends Component {
         });
     }
 
+    mostraralerta(){
+        this.setState({
+            alerta: true,
+        })
+    }
+
+    sacaralerta(){
+        this.setState({
+            alerta: false,
+        })
+    }
+
+
     render() {
         return (
             
@@ -93,7 +107,6 @@ class Post extends Component {
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
-                    <Text>Me Gusta</Text>
                     <FontAwesome name= "heart-o" size={24} color="black" />
                 </TouchableOpacity> 
                 :
@@ -152,12 +165,26 @@ class Post extends Component {
 
                 { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
-                        <TouchableOpacity onPress={() => this.borrarposteo()}>
+                        <TouchableOpacity onPress={() => this.mostraralerta()}>
                         <FontAwesome name='trash' size={24} />
                         </TouchableOpacity> 
+                        { this.state.alerta ? (
+                        <Modal
+                        visible={this.state.alerta}
+                        animationType="slide"
+                        transparent="false">
+                            <Text>¿Estas seguro que quieres eliminar tu posteo?</Text>
+                        <TouchableOpacity onPress={() => this.borrarposteo() }>
+                            <Text>Aceptar</Text>
+                            </TouchableOpacity>
+                             <TouchableOpacity onPress={() => this.sacaralerta()}>
+                                  <Text>Cancelar</Text> </TouchableOpacity>
+                                  </Modal>)
+                                  :null
+                                  }
                     </View>
                     :
-                    <Text></Text>
+                    <></>
                 }
             </View> 
         );
