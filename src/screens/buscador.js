@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
         height: 20,
         paddingVertical: 15,
         paddingHorizontal: 10,
-        border: 1,
-        borderColor:'#ccc',
-        borderStyle:'solid',
-        borderRadius:6,
-        marginVertical:10
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical: 10,
+        borderWidth : 1,
     },
     container:{
         paddingHorizontal: 10,

@@ -4,11 +4,6 @@ import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 import{FontAwesome} from '@expo/vector-icons'
 
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 class Post extends Component {
     constructor(props){
         super(props);
@@ -99,7 +94,7 @@ class Post extends Component {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
                     <Text>Me Gusta</Text>
-                     <FontAwesome name= "heart-o" size={24} color="black" />
+                    <FontAwesome name= "heart-o" size={24} color="black" />
                 </TouchableOpacity> 
                 :
                 <TouchableOpacity onPress={() => this.quitarLike()}>
