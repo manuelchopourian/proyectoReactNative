@@ -107,11 +107,11 @@ class Post extends Component {
                 {
                 this.state.myLike === false ?
                 <TouchableOpacity onPress={() => this.darLike()}>
-                    <FontAwesome name= "heart-o" size={24} color="black"  style={styles.like}/>
+                    <FontAwesome name= "heart-o" size={24} color="black"  style={styles.corazon}/>
                 </TouchableOpacity> 
                 :
                 <TouchableOpacity onPress={() => this.quitarLike()}>
-                    <FontAwesome name= "heart" size={24} color="red" />
+                    <FontAwesome name= "heart" size={24} color="red" style={styles.corazon}/>
                 </TouchableOpacity>
                 }
                 <Text style={styles.like}>Likes: {this.state.likes}</Text>
@@ -164,26 +164,29 @@ class Post extends Component {
                         <TouchableOpacity onPress={() => this.showModal()}>
                         <Text style={styles.data}>Mostrar Comentarios</Text>
                         </TouchableOpacity> 
-                        <Text></Text>
+                        
                     </View>
                 }
 
                 { this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
                         <TouchableOpacity onPress={() => this.mostraralerta()}>
-                        <FontAwesome name='trash' size={24} />
+                        <FontAwesome name='trash' size={24} style={styles.delete}/>
                         </TouchableOpacity> 
                         { this.state.alerta ? (
                         <Modal
                         visible={this.state.alerta}
                         animationType="slide"
-                        transparent="false">
+                        transparent="false"
+                        style = {styles.confirmacion}>
                             <Text>¿Estas seguro que quieres eliminar tu posteo?</Text>
-                        <TouchableOpacity onPress={() => this.borrarposteo() }>
-                            <Text>Aceptar</Text>
+                        <View style = {styles.buttonsContainer}>
+                        <TouchableOpacity onPress={() => this.borrarposteo() } style={styles.buttonAccept}>
+                            <Text style={styles.texto}>Aceptar</Text>
                             </TouchableOpacity>
-                             <TouchableOpacity onPress={() => this.sacaralerta()}>
-                                  <Text>Cancelar</Text> </TouchableOpacity>
+                             <TouchableOpacity onPress={() => this.sacaralerta()} style={styles.buttonDecline}>
+                                  <Text style={styles.texto}>Cancelar</Text> </TouchableOpacity>
+                        </View>
                                   </Modal>)
                                   :null
                                   }
@@ -270,6 +273,11 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         fontSize: 13
     },
+    corazon:{
+        paddingHorizontal: 5,
+        marginBottom: 5,
+        fontSize: 18
+    },
     data:{
         fontFamily: 'HelveticaNeue',
         paddingHorizontal: 5,
@@ -278,6 +286,31 @@ const styles = StyleSheet.create({
     delete:{
         textAlign: 'right',
         marginBottom: 5,
+    },
+    buttonsContainer:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+    },
+    buttonAccept:{
+        backgroundColor: '#28a745',
+        borderRadius:4,
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        
+    },
+    buttonDecline:{
+        backgroundColor: '#CB4335',
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+    },
+    confirmacion:{
+        padding: 5,
+        borderRadius: 4
+
     }
 })
 
