@@ -14,7 +14,7 @@ class Profile extends Component {
     }
 
     componentDidMount(){
-        db.collection('posts').where('owner' , '==', `${this.props.dataUsuario.email}` ).onSnapshot(
+        db.collection('posts').where('owner' , '==', this.props.dataUsuario.displayName ).onSnapshot(
         docs => {
             let posts = []
             docs.forEach(doc => {
@@ -31,7 +31,6 @@ class Profile extends Component {
     }
 
     render() {
-        {console.log(this.props.dataUsuario);}
         return (
             <View style={styles.container}>
                 {
@@ -43,7 +42,7 @@ class Profile extends Component {
                 <Text style={styles.text}> Nombre de usuario: {this.props.dataUsuario.displayName}</Text>
                 <Text style={styles.text}> Ultimo inicio de sesión: {this.props.dataUsuario.metadata.lastSignInTime} </Text>
                 <Text style={styles.text}> Fecha de creación del usuario: {this.props.dataUsuario.metadata.creationTime} </Text>
-                <Text style={styles.text}> Cantidad de posteos: </Text>
+                <Text style={styles.text}> Cantidad de posteos: {this.state.posteos.length}</Text>
                 <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} />
                 <TouchableOpacity onPress={() => this.props.logout()} style={styles.button}>
                     <Text style={styles.texto}>Cerrar sesión</Text>

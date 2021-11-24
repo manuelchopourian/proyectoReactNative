@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import { ActivityIndicator, FlatList } from 'react-native';
 import {db} from '../firebase/config'
 
 import Post from '../components/post';
-import Buscador from '../components/buscador';
 
 class Home extends Component {
     constructor(props){
@@ -37,7 +36,10 @@ class Home extends Component {
                 this.state.isLoaded === false ?
                 <ActivityIndicator size='large' color='green'/> 
                 :
+                this.state.posteos.length != 0 ?
                 <FlatList data={this.state.posteos} keyExtractor={post => post.id} renderItem={({item}) => <Post postData={item}/>} />
+                :
+                <Text>Aun no hay posteos</Text>
             }
                 </View>
         );

@@ -10,10 +10,7 @@ class Login extends Component {
             userName:''
         }
     }
-    onSubmit(){
-        console.log(`Ingresaste con el email: ${this.state.email}`)
-        console.log(`Ingresaste con la password: ${this.state.password}`)
-    }
+
     render() {
         return (
             <View style={styles.container}>

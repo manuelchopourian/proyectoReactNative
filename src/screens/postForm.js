@@ -15,16 +15,17 @@ class PostForm extends Component {
 
     submitPost(){
         db.collection('posts').add({
-            owner: auth.currentUser.email,
+            owner: auth.currentUser.displayName,
             texto: this.state.textoPost,
             createdAt: Date.now(),
             likes: [],
             comments: [],
-            photo : this.state.url
+            photo : this.state.url,
         })
         .then(
             this.setState({
-                textoPost:''
+                textoPost:'',
+                showCamera : true
             }),
 
             this.props.drawerProps.navigation.navigate('Home')

@@ -48,6 +48,7 @@ class MyCamera extends Component{
                                 this.props.onImageUpload(url);
                                 this.setState({
                                     photo : '',
+                                    showCamera: true,
                                 })
                             // .catch( error => console.log(error) )
                             })
@@ -58,8 +59,10 @@ class MyCamera extends Component{
     }
 
     clear(){
-        // VACIAR EL ESTADO photo A ''.
-        // CAMBIAR showCamera A true.
+        this.setState({
+            photo : '',
+            showCamera: true,
+        })
     }
 
     render(){

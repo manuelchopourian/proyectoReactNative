@@ -82,7 +82,7 @@ class Post extends Component {
             <View style={styles.container}>
                 {console.log(this.props.postData)}
                 {<Image 
-                    style = {styles.modalContainer }
+                    style={{width: '100%', height: 250, borderRadius: '10px',}}
                     source = { {uri : this.props.postData.data.photo } }
                 />}
                 <Text>{this.props.postData.data.texto}</Text>
