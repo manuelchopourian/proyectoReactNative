@@ -73,7 +73,7 @@ class MyCamera extends Component{
                     this.state.showCamera == false ?
                         <React.Fragment>
                             <Image 
-                                style = {styles.cameraBody}
+                                style={{width: '100%', height: 250, borderRadius: '10px',}}
                                 source = { {uri : this.state.photo } }
                             />
                             <View style = {styles.buttonsContainer}>
@@ -89,7 +89,7 @@ class MyCamera extends Component{
                         // Renderizo camara
                         <View style = {styles.container} >
                             <Camera
-                                style = {styles.cameraBody} // Estilo
+                                style={{width: '100%', height: 250, borderRadius: '10px',}} // Estilo
                                 type = {Camera.Constants.Type.back} // Que camára permite: frontal, trasera o ambas. 
                                 ref = { reference => this.camera = reference } // Indica a que cámara refiere el componente. 
                             />
