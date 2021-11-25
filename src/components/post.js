@@ -168,31 +168,35 @@ class Post extends Component {
                     </View>
                 }
 
-                { this.props.postData.data.owner == auth.currentUser.displayName ? 
+                { 
+                this.props.postData.data.owner == auth.currentUser.displayName ? 
                 <View>
-                        <TouchableOpacity onPress={() => this.mostraralerta()}>
-                        <FontAwesome name='trash' size={24} style={styles.delete}/>
-                        </TouchableOpacity> 
-                        { this.state.alerta ? (
-                        <Modal
-                        visible={this.state.alerta}
-                        animationType="slide"
-                        transparent="false"
-                        style = {styles.confirmacion}>
-                            <Text>¿Estas seguro que quieres eliminar tu posteo?</Text>
+                    <TouchableOpacity onPress={() => this.mostraralerta()}>
+                    <FontAwesome name='trash' size={24} style={styles.delete}/>
+                    </TouchableOpacity> 
+                    { 
+                    this.state.alerta ? (
+                    <Modal
+                    visible={this.state.alerta}
+                    animationType="slide"
+                    transparent="false"
+                    style = {styles.confirmacion}>
+                        <Text>¿Estas seguro que quieres eliminar tu posteo?</Text>
                         <View style = {styles.buttonsContainer}>
-                        <TouchableOpacity onPress={() => this.borrarposteo() } style={styles.buttonAccept}>
-                            <Text style={styles.texto}>Aceptar</Text>
+                            <TouchableOpacity onPress={() => this.borrarposteo() } style={styles.buttonAccept}>
+                                <Text style={styles.texto}>Aceptar</Text>
                             </TouchableOpacity>
-                             <TouchableOpacity onPress={() => this.sacaralerta()} style={styles.buttonDecline}>
-                                  <Text style={styles.texto}>Cancelar</Text> </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.sacaralerta()} style={styles.buttonDecline}>
+                                <Text style={styles.texto}>Cancelar</Text>
+                            </TouchableOpacity>
                         </View>
-                                  </Modal>)
-                                  :null
-                                  }
-                    </View>
+                    </Modal>)
                     :
-                    <></>
+                    null
+                    }
+                </View>
+                :
+                <></>
                 }
             </View> 
         );
